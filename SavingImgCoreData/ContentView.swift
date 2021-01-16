@@ -9,72 +9,63 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    @Environment(\.managedObjectContext) var moc
+    
+    @FetchRequest(entity: Saving.entity(), sortDescriptors:[
+        NSSortDescriptor(keyPath: \Saving.user, ascending: true),
+        NSSortDescriptor(keyPath: \Saving.imageD, ascending: true),
+        NSSortDescriptor(keyPath: \Saving.favo, ascending: false),
+        NSSortDescriptor(keyPath: \Saving.descriptions, ascending: true)
+    ]) var savings : FetchedResults<Saving>
+    @State var image : Data = .init(count:0)
+    @State var show = false
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
+        NavigationView{
+//            I will remove the list separator now by implementing Scroll View and forEach
+            ScrollView(.vertical,showsIndicators: false) {
+                ForEach(savings,id:\.self){ save in
+                    VStack(alignment:.leading){
+                        Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
+                            .resizable()
+                            .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+                            .cornerRadius(15)
+                        HStack {
+                            Text("\(save.descriptions ?? "")")
+                            Spacer()
+                            Button(action: {
+                                save.favo.toggle()
+                                try? self.moc.save()
+                            }, label: {
+                                Image(systemName: save.favo ? "bookmark.fill": "bookmark")
+                            })
+                            
+                        }
+                        Text("\(save.user ?? "")")
+                            .font(.callout)
+                            .foregroundColor(.secondary)
+    //                   I've already done in this view
+    //                   Lets create the sender info view
+                    }
+                    
+                }.padding()
+            }.navigationBarTitle("News",displayMode: .inline)
+                .navigationBarItems(trailing: Button(action: {
+                    self.show.toggle()
+                }, label: {
+                    Image(systemName: "camera.fill")
+            }))
+            
         }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+        .sheet(isPresented: self.$show, content: {
+            SenderView().environment(\.managedObjectContext, self.moc)
+//            Lets run the app only to see how it looks like
+        })
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

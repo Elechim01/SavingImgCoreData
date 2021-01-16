@@ -15,6 +15,10 @@
 		D1E388B625B04E18009568F7 /* SavingImgCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1E388B425B04E18009568F7 /* SavingImgCoreData.xcdatamodeld */; };
 		D1E388C125B04E18009568F7 /* SavingImgCoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388C025B04E18009568F7 /* SavingImgCoreDataTests.swift */; };
 		D1E388CC25B04E18009568F7 /* SavingImgCoreDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388CB25B04E18009568F7 /* SavingImgCoreDataUITests.swift */; };
+		D1E388DE25B04FAC009568F7 /* Saving+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388DC25B04FAC009568F7 /* Saving+CoreDataClass.swift */; };
+		D1E388DF25B04FAC009568F7 /* Saving+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388DD25B04FAC009568F7 /* Saving+CoreDataProperties.swift */; };
+		D1E388E725B0F31B009568F7 /* SenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388E625B0F31B009568F7 /* SenderView.swift */; };
+		D1E388EC25B0FA6E009568F7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E388EB25B0FA6E009568F7 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		D1E388C725B04E18009568F7 /* SavingImgCoreDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SavingImgCoreDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E388CB25B04E18009568F7 /* SavingImgCoreDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingImgCoreDataUITests.swift; sourceTree = "<group>"; };
 		D1E388CD25B04E18009568F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1E388DC25B04FAC009568F7 /* Saving+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Saving+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D1E388DD25B04FAC009568F7 /* Saving+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Saving+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D1E388E625B0F31B009568F7 /* SenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderView.swift; sourceTree = "<group>"; };
+		D1E388EB25B0FA6E009568F7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +107,17 @@
 		D1E388A825B04E16009568F7 /* SavingImgCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D1E388DC25B04FAC009568F7 /* Saving+CoreDataClass.swift */,
+				D1E388DD25B04FAC009568F7 /* Saving+CoreDataProperties.swift */,
 				D1E388A925B04E16009568F7 /* SavingImgCoreDataApp.swift */,
 				D1E388AB25B04E16009568F7 /* ContentView.swift */,
+				D1E388E625B0F31B009568F7 /* SenderView.swift */,
 				D1E388AD25B04E18009568F7 /* Assets.xcassets */,
 				D1E388B225B04E18009568F7 /* Persistence.swift */,
 				D1E388B725B04E18009568F7 /* Info.plist */,
 				D1E388B425B04E18009568F7 /* SavingImgCoreData.xcdatamodeld */,
 				D1E388AF25B04E18009568F7 /* Preview Content */,
+				D1E388EB25B0FA6E009568F7 /* ImagePicker.swift */,
 			);
 			path = SavingImgCoreData;
 			sourceTree = "<group>";
@@ -266,9 +278,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1E388B325B04E18009568F7 /* Persistence.swift in Sources */,
+				D1E388E725B0F31B009568F7 /* SenderView.swift in Sources */,
 				D1E388AC25B04E16009568F7 /* ContentView.swift in Sources */,
 				D1E388B625B04E18009568F7 /* SavingImgCoreData.xcdatamodeld in Sources */,
 				D1E388AA25B04E16009568F7 /* SavingImgCoreDataApp.swift in Sources */,
+				D1E388EC25B0FA6E009568F7 /* ImagePicker.swift in Sources */,
+				D1E388DE25B04FAC009568F7 /* Saving+CoreDataClass.swift in Sources */,
+				D1E388DF25B04FAC009568F7 /* Saving+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

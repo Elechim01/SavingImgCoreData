@@ -12,6 +12,7 @@ struct SavingImgCoreDataApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
+//        @Environment(\.managedObjectContext) var moc
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
